@@ -15,7 +15,7 @@
         </div>
     </header>
     <div class="form-content">
-      <form class="form" name="form" action="#" onsubmit="save(); return false ">
+      <form class="form" action="#" onsubmit="save();">
         <div class="form-head"> Employee Payroll form </div>
           <div class="row-content">
             <label class="label text" for="name">Name :</label>
@@ -69,15 +69,15 @@
                <div class="row-content">
                   <label class="label text" for="department">Department :</label>
                     <div>
-                      <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                      <input class="checkbox" type="checkbox" id="hr" name="department" value="HR">
                         <label class="text" for="hr">HR</label>
-                      <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                      <input class="checkbox" type="checkbox" id="sales" name="department" value="Sales">
                         <label class="text" for="sales">Sales</label>
-                      <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                      <input class="checkbox" type="checkbox" id="finance" name="department" value="Finance">
                         <label class="text" for="finance">Finance</label>
-                      <input class="checkbox" type="checkbox" id="engineer" name="engineer" value="Engineer">
+                      <input class="checkbox" type="checkbox" id="engineer" name="department" value="Engineer">
                         <label class="text" for="engineer">Engineer</label>
-                      <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                      <input class="checkbox" type="checkbox" id="others" name="department" value="Others">
                         <label class="text" for="others">Others</label>
                   </div>
                </div>
@@ -127,11 +127,13 @@
                        <select id="month" name="Month">
                            <option value="Jan">January</option>
                            <option value="Feb">Febuary</option>
-                           <option value="March">March</option> <option value="April">April</option>
+                           <option value="March">March</option> 
+                           <option value="April">April</option>
                            <option value="May">May</option>
                            <option value="June">June</option>
                            <option value="July">July</option>
-                           <option value="Aug">August</option> <option value="Sept">September</option>
+                           <option value="Aug">August</option> 
+                           <option value="Sept">September</option>
                            <option value="Oct">October</option>
                            <option value="Nov">November</option>
                            <option value="Dec">December</option>
@@ -144,7 +146,9 @@
                            <option value="2020">2020</option>
                            <option value="2021">2021</option>
                            <option value="2022">2022</option>
+                           <option value="2023">2023</option>
                          </select>
+                         <error-output class="date-error" for="text"></error-output>
                      </div>
                 </div>
 
@@ -161,6 +165,8 @@
                 </div>
             </form>
             <script src="../JS/EmployeePayroll.js"></script>
+            <script src="../JS/DetailData.js"></script>
+            <script src="../JS/FunctionCalls.js"></script>
         </div>
     </body>
 </html>

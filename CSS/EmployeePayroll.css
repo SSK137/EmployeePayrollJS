@@ -104,7 +104,6 @@ select {
 .button {
     font-size: 20px;
     font-family: Roboto;
-    letter-spacing: 0px;
     color: #000000;
     opacity: 1;
     background: transparent;
@@ -112,10 +111,14 @@ select {
     font-weight: 400;
     min-width: 140px;
     padding: 7px 7px;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     cursor: pointer;
     border-radius: 8px;
     background-color: #828f8f;
+}
+.button:hover{
+    background-color: white;
+    color: black;
 }
 
 .SubmitButton {
