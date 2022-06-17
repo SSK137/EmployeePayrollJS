@@ -57,7 +57,9 @@ function checkdate(){
 checkStartDate=(date)=>{
     let curruntDate = new Date();
     let startDate=new Date(date)
-    if(startDate> curruntDate)
+    let dd=curruntDate.getTime();
+    let aa=startDate.getTime();
+    if(startDate > curruntDate)
     throw "Start Date iS future Date";
     const diff = Math.abs(curruntDate.getTime() - startDate.getTime());
     if(diff/(1000*60*60*24)>30)
