@@ -1,10 +1,13 @@
 let empPayrollList
+let isUpdate = false; 
+let employeePayrollObj = {};
 window.addEventListener('DOMContentLoaded', (event) => {
-    empPayrollList =   getEmployeePayrollDataFromStorage();
+    empPayrollList =   getEmployeePayrollDataFromLocalStorage();
     document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
+    
 });
-getEmployeePayrollDataFromStorage= () => {
+getEmployeePayrollDataFromLocalStorage= () => {
     return localStorage.getItem('EmployeePayrollList') ? 
                     JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
 }
@@ -25,8 +28,8 @@ const createInnerHtml = () => {
                 <td>${empPayrollData._salary}</td>
                 <td>${empPayrollData._startDate}</td>
                 <td>
-                    <img id="1" src="../Assets/Icons/delete-black-18dp.svg">
-                    <img id="1" src="../Assets/Icons/create-black-18dp.svg">
+                    <img id="${empPayrollData._name}" onclick="remove(this)" src="../Assets/Icons/delete-black-18dp.svg">
+                    <img id="${empPayrollData._name}" onclick="update(this)" src="../Assets/Icons/create-black-18dp.svg">
                 </td>
             </tr>
         `;
@@ -40,4 +43,16 @@ const getDeptHtml = (deptList) => {
         deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
     }
     return deptHtml;
+}
+
+const remove = (node) => {
+    let empPayrollData = empPayrollList.find(empData => empData._name == node.id);
+   if(!empPayrollData) return;
+    const index = empPayrollList 
+                    .map(empData => empData._name)
+                    .indexOf(empPayrollData._name);
+    empPayrollList.splice(index, 1);
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(empPayrollList));
+    document.querySelector('.emp-count').textContent = empPayrollList.length;
+    createInnerHtml();
 }

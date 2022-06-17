@@ -48,7 +48,7 @@ class EmployeePayroll {
     }
 
     toString() {
-        return "name=" + this.name + ", gender=" + this.gender +
+        return "Id="+this.id+"name=" + this.name + ", gender=" + this.gender +
             ", profilePic=" + this.profilePic + ", department=" + this.department +
             ",salary=" + this.salary + ", startDate=" +this.startDate + ", note=" + this.note;
     }
