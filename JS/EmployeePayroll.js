@@ -1,88 +1,61 @@
-const save = () => {
-    try {
-        let employeePayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeePayrollData);
-        alert("Added Sucedssfully");
-        window.location.href(site_properties.add_emp_Payroll_page);        
-    } catch (e) {
-        return ;
+class EmployeePayroll {
+    get id(){
+        return this._id;
     }
-}
-
-function createAndUpdateStorage(employeePayrollData) {
-    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (employeePayrollList != undefined) {
-        employeePayrollList.push(employeePayrollData);
-    } else {
-        employeePayrollList = [employeePayrollData]
+    set id(id){
+        this._id=id;
     }
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
-}
-
-const createEmployeePayroll = () => {
-    let employeePayrollData = new EmployeePayroll();
-    employeePayrollData.id = createNewEmpId();
-    try {
-        employeePayrollData.name = getInputValueById('#name');
-    } catch (e) {
-        setTextValue('.text-error', e);
-        throw e;
+    get name() {
+        return this._name;
     }
-    employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
-    employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
-    employeePayrollData.department = getSelectedValues('[name=department]');
-    employeePayrollData.salary = getInputValueById('#salary');
-    employeePayrollData.note = getInputValueById('#notes');
-    let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    employeePayrollData.startDate = date;
-    return employeePayrollData;
-}
-const getSelectedValues = (propertyValue) => {
-    let allItems = document.querySelectorAll(propertyValue);
-    let selItems = [];
-    allItems.forEach(item => {
-        if (item.checked) selItems.push(item.value);
-    });
-    return selItems;
-}
+    set name(name) {
+        let nameRgx = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (nameRgx.test(name))
+            this._name = name;
+        else throw 'Name is Incorrect!';
+    }
+    get profilePic() {
+        return this._profilePic;
+    }
+    set profilePic(profilePic) {
+        this._profilePic = profilePic;
+    }
 
-const getInputValueById = (id) => {
-    let value = document.querySelector(id).value;
-    return value;
-}
-const getInputElementValue = (id) => {
-    let value = document.getElementById(id).value;
-    return value;
-}
+    get gender() {
+        return this._gender;
+    }
+    set gender(gender) {
+        this._gender = gender;
+    }
+    get department() {
+        return this._department;
+    }
+    set department(department) {
+        this._department = department;
+    }
+    get salary() {
+        return this._salary;
+    }
+    set salary(salary) {
+        this._salary = salary;
+    }
+    get note() {
+        return this._note;
+    }
+    set note(note) {
+        this._note = note;
+    }
+    get startDate() {
+        return this._startDate;
+    }
+    set startDate(startDate) {
+        
+        this._startDate = startDate;
+    }
 
-const createNewEmpId = () => {
-    let empId = localStorage.getItem('EmpId');
-    empId = !empId ? 1 : (parseInt(empId) + 1);
-    localStorage.setItem('EmpId', empId);
-    return empId;
-}
-
-const resetForm = () => {
-    setValue('#name', '');
-    unsetSelectedValues('[name=profile]');
-    unsetSelectedValues('[name=gender]'); 
-    unsetSelectedValues('[name=department]');
-    setValue('#salary', '');
-    setTextValue('.salary-output','400000'); 
-    setValue('#notes', '');
-    setValue('#day', '');
-    setValue('#month', '');
-    setValue('#year', '');
-}
-const unsetSelectedValues = (propertyValue) => {
-    let allItems = document.querySelectorAll(propertyValue); allItems.forEach(item => {
-        item.checked = false;
-    });
-}
-const setTextValue = (id, value) => {
-    const element = document.querySelector(id); element.textContent = value;
-}
-const setValue = (id, value) => {
-    const element = document.querySelector(id);
-    element.value = value;
+    toString() {
+        return "Id="+this.id+"name=" + this.name + ", gender=" + this.gender +
+            ", profilePic=" + this.profilePic + ", department=" + this.department +
+            ",salary=" + this.salary + ", startDate=" +this.startDate + ", note=" + this.note;
+    }
 }
