@@ -3,6 +3,7 @@ const save = () => {
         let employeePayrollData = createEmployeePayroll();
         createAndUpdateStorage(employeePayrollData);
         alert("Added Sucedssfully");
+        window.location.href(site_properties.add_emp_Payroll_page);        
     } catch (e) {
         return ;
     }
@@ -20,7 +21,7 @@ function createAndUpdateStorage(employeePayrollData) {
 
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayroll();
-
+    employeePayrollData.id = createNewEmpId();
     try {
         employeePayrollData.name = getInputValueById('#name');
     } catch (e) {
@@ -52,6 +53,13 @@ const getInputValueById = (id) => {
 const getInputElementValue = (id) => {
     let value = document.getElementById(id).value;
     return value;
+}
+
+const createNewEmpId = () => {
+    let empId = localStorage.getItem('EmpId');
+    empId = !empId ? 1 : (parseInt(empId) + 1);
+    localStorage.setItem('EmpId', empId);
+    return empId;
 }
 
 const resetForm = () => {
